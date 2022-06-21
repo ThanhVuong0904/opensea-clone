@@ -5,9 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import config from '~/config';
 import images from '~/assets/images';
-import { faCircleXmark, faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
-// import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { AccountCircleOutlined } from '@mui/icons-material';
+import ClearIcon from '@mui/icons-material/Clear';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import { useState } from 'react';
+import { useRef } from 'react';
 
 const cx = classnames.bind(styles);
 
@@ -19,6 +21,12 @@ const MENU = [
 ];
 
 export default function Header() {
+    const [searchValue, setSearchValue] = useState('');
+    const inputRef = useRef();
+    const handleClear = () => {
+        setSearchValue('');
+        inputRef.current.focus();
+    };
     return (
         <header className={cx('wrapper')}>
             <div className={cx('container')}>
@@ -29,9 +37,19 @@ export default function Header() {
 
                 {/* Search */}
                 <div className={cx('search')}>
-                    <FontAwesomeIcon icon={faSearch} />
-                    <input type="text" placeholder="Search items, collections, and accounts" />
-                    <FontAwesomeIcon icon={faCircleXmark} />
+                    <SearchOutlinedIcon className={cx('search-icon')} />
+                    <input
+                        type="text"
+                        placeholder="Search items, collections, and accounts"
+                        value={searchValue}
+                        onChange={(e) => setSearchValue(e.target.value)}
+                        ref={inputRef}
+                    />
+                    {searchValue && (
+                        <div onClick={handleClear}>
+                            <ClearIcon className={cx('clear-icon')} />
+                        </div>
+                    )}
                 </div>
 
                 <div className={cx('menu')}>

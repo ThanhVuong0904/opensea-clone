@@ -59,6 +59,12 @@
     }
 }
 
+.search-icon,
+.clear-icon {
+    color: rgba(4, 17, 29, 0.75);
+    font-size: 2rem;
+    cursor: pointer;
+}
 //Menu
 .menu {
     display: flex;
