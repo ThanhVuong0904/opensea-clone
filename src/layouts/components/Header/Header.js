@@ -1,15 +1,13 @@
+import { useState, useRef } from 'react';
 import classnames from 'classnames/bind';
 import styles from './Header.module.scss';
 import { Link, NavLink } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import config from '~/config';
 import images from '~/assets/images';
 import { AccountCircleOutlined } from '@mui/icons-material';
 import ClearIcon from '@mui/icons-material/Clear';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import { useState } from 'react';
-import { useRef } from 'react';
 
 const cx = classnames.bind(styles);
 
@@ -46,8 +44,8 @@ export default function Header() {
                         ref={inputRef}
                     />
                     {searchValue && (
-                        <div onClick={handleClear}>
-                            <ClearIcon className={cx('clear-icon')} />
+                        <div onClick={handleClear} className={cx('clear-icon')}>
+                            <ClearIcon />
                         </div>
                     )}
                 </div>

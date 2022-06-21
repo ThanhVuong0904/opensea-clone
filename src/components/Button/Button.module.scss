@@ -1,0 +1,67 @@
+.wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 167px;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: var(--white);
+    border: 1px solid transparent;
+    user-select: none;
+
+    + .wrapper {
+        margin-left: 20px;
+    }
+
+    &.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+}
+.icon + .title,
+.title + .icon {
+    margin-left: 8px;
+}
+
+.icon {
+    display: inline-block;
+    width: 24px;
+    text-align: center;
+}
+
+// Button types
+.rounded {
+    border-radius: 999px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 6%);
+    border-color: rgba(22, 24, 35, 0.12);
+
+    &:hover {
+        border-color: rgba(22, 24, 35, 0.2);
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+}
+
+.primary {
+    color: var(--white);
+    background-color: var(--primary);
+    border-color: var(--primary);
+
+    &:hover {
+        background-color: rgb(46, 142, 238);
+        transition: all 0.2s ease 0s;
+        box-shadow: rgb(0 0 0 / 10%) 0px 2px 10px;
+    }
+}
+
+.outline {
+    color: var(--primary);
+    border: 2px solid rgb(229, 232, 235);
+
+    &:hover {
+        transition: all 0.2s ease 0s;
+        box-shadow: rgb(0 0 0 / 10%) 0px 2px 10px;
+    }
+}

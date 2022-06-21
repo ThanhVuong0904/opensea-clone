@@ -62,7 +62,7 @@
 .search-icon,
 .clear-icon {
     color: rgba(4, 17, 29, 0.75);
-    font-size: 2rem;
+    font-size: 2rem !important;
     cursor: pointer;
 }
 //Menu
@@ -111,6 +111,6 @@
 }
 
 .account-icon {
-    font-size: 3.2rem;
+    font-size: 3.2rem !important;
     color: rgba(4, 17, 29, 0.75);
 }
