@@ -1,0 +1,22 @@
+.wrapper {
+    margin: 40px auto;
+    padding: 0 40px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 140px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 2.4rem;
+    color: rgb(53, 56, 64);
+}

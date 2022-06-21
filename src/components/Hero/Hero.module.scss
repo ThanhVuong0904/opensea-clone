@@ -1,3 +1,6 @@
+.wrapper {
+    height: 586px;
+}
 .background {
     width: 100%;
     position: absolute;
@@ -8,7 +11,7 @@
         background-size: cover;
         background-color: rgb(255, 255, 255);
         background-position: center center;
-        opacity: 0.3;
+        opacity: 0.1;
         filter: blur(8px);
         --webkit-mask: linear-gradient(rgb(255, 255, 255), transparent);
     }
