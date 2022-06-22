@@ -12,10 +12,16 @@
 .container {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 100%;
     padding: 0 20px;
 }
 
+.d-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 //Logo
 .logo-link {
     display: flex;
@@ -31,14 +37,19 @@
         font-weight: 700;
         font-size: 2.2rem;
     }
+    @media screen and (max-width: 1279.98px) {
+        padding-right: 30px;
+    }
 }
 
 //Search
 .search {
     display: flex;
     align-items: center;
-    width: 502px;
-    margin-left: 20px;
+    max-width: 768px;
+    width: 100%;
+    margin-left: 50px;
+    // margin-right: -189px;
     border: 2px solid rgb(229, 232, 235);
     border-radius: 10px;
     padding: 0 12px;
@@ -52,17 +63,25 @@
         outline: 0;
         color: rgb(4, 17, 29);
         font-size: 1.6rem;
+
+        &::placeholder {
+            font-weight: 500;
+        }
     }
 
     &:focus-within {
         border-color: rgb(138, 147, 155);
+    }
+    @media screen and (max-width: 1279.98px) {
+        max-width: 502px;
+        margin-right: 0;
     }
 }
 
 .search-icon,
 .clear-icon {
     color: rgba(4, 17, 29, 0.75);
-    font-size: 2rem !important;
+    font-size: 2.3rem !important;
     cursor: pointer;
 }
 //Menu
@@ -70,9 +89,16 @@
     display: flex;
     align-items: center;
     height: 100%;
-    margin-left: 15px;
+    @media screen and (max-width: 1279.98px) {
+        margin-left: 15px;
+    }
 }
 
+.menu {
+    @media not all and (min-width: 1200px) {
+        display: none;
+    }
+}
 .menu-link {
     position: relative;
     display: flex;
@@ -108,9 +134,20 @@
     height: 100%;
     margin-left: 30px;
     cursor: pointer;
+    @media screen and (max-width: 1279.98px) {
+        margin-left: 0;
+    }
 }
 
-.account-icon {
+.account-icon,
+.account-wallet {
     font-size: 3.2rem !important;
     color: rgba(4, 17, 29, 0.75);
+}
+
+.account-wallet {
+    margin-left: 50px;
+    @media screen and (max-width: 1279.98px) {
+        margin-left: 25px;
+    }
 }

@@ -8,6 +8,7 @@ import images from '~/assets/images';
 import { AccountCircleOutlined } from '@mui/icons-material';
 import ClearIcon from '@mui/icons-material/Clear';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 
 const cx = classnames.bind(styles);
 
@@ -44,26 +45,29 @@ export default function Header() {
                         ref={inputRef}
                     />
                     {searchValue && (
-                        <div onClick={handleClear} className={cx('clear-icon')}>
-                            <ClearIcon />
+                        <div onClick={handleClear} style={{ display: 'flex' }}>
+                            <ClearIcon className={cx('clear-icon')} />
                         </div>
                     )}
                 </div>
 
-                <div className={cx('menu')}>
-                    {MENU.map((menu, index) => (
-                        <NavLink
-                            key={index}
-                            to={menu.path}
-                            className={(link) => cx('menu-link', { active: link.isActive })}
-                        >
-                            {menu.title}
-                        </NavLink>
-                    ))}
-                </div>
+                <div className={cx('d-flex')}>
+                    <div className={cx('menu')}>
+                        {MENU.map((menu, index) => (
+                            <NavLink
+                                key={index}
+                                to={menu.path}
+                                className={(link) => cx('menu-link', { active: link.isActive })}
+                            >
+                                {menu.title}
+                            </NavLink>
+                        ))}
+                    </div>
 
-                <div className={cx('account')}>
-                    <AccountCircleOutlined className={cx('account-icon')} />
+                    <div className={cx('account')}>
+                        <AccountCircleOutlined className={cx('account-icon')} />
+                        <AccountBalanceWalletOutlinedIcon className={cx('account-wallet')} />
+                    </div>
                 </div>
             </div>
         </header>
