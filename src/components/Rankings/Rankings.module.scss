@@ -18,6 +18,11 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 0 50px;
     margin-top: 30px;
+    @media screen and (max-width: 1279.98px) {
+        grid-template-columns: 1fr;
+        margin: 30px auto 0;
+        max-width: 440px;
+    }
 }
 
 .ranking-item {
