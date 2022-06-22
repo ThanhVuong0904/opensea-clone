@@ -1,0 +1,50 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heading {
+    font-weight: 600;
+    font-size: 2.4rem;
+    color: rgb(4, 17, 29);
+}
+
+.arrow-down {
+    font-size: 2rem !important;
+    color: rgb(32, 129, 226);
+}
+.tabs {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    span {
+        font-weight: 600;
+        font-size: 2.4rem;
+        color: rgb(32, 129, 226);
+    }
+
+    .section {
+        position: absolute;
+        width: 150%;
+        top: 50px;
+        left: 0;
+        box-shadow: rgb(0 0 0 / 16%) 0px 4px 16px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px;
+        cursor: pointer;
+
+        opacity: 0;
+        p {
+            padding: 15px;
+            color: rgb(4, 17, 29);
+            font-weight: 600;
+            border-bottom: 1px solid rgb(229, 232, 235);
+        }
+        &.active {
+            opacity: 1;
+        }
+    }
+}
