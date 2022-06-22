@@ -1,7 +1,16 @@
 .wrapper {
     max-width: min(1280px, 100% - 40px);
     width: 100%;
-    margin: 120px auto 0;
+    margin: 120px auto 100px;
+}
+
+.tab-item {
+    border-bottom: 1px solid rgb(229, 232, 235);
+    p {
+        padding: 15px;
+        color: rgb(4, 17, 29);
+        font-weight: 600;
+    }
 }
 
 .list {

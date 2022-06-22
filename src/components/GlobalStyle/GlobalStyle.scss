@@ -36,4 +36,22 @@ body {
         font-weight: 600;
         padding: 6px 10px;
     }
+    .slick-slide {
+        padding: 0 10px;
+    }
+    .slick-arrow {
+        z-index: 99;
+        &::before {
+            content: '';
+        }
+        &:hover {
+            color: rgb(4, 17, 29);
+            background-color: rgb(255, 255, 255);
+            transition: all 0.2s linear;
+        }
+        &:active {
+            background-color: transparent;
+            transition: all 0.2s linear;
+        }
+    }
 }

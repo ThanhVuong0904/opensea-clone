@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import classnames from 'classnames/bind';
 import styles from './Rankings.module.scss';
 import { RANKINGS_24_HOURS, RANKINGS_30_DAYS, RANKINGS_7_DAYS } from './FakeData';
@@ -16,6 +16,7 @@ const TABS = [
 export default function Rankings() {
     const [activeTab, setActiveTab] = useState({ time: 1, name: 'last 24 hours' });
     const [render, setRender] = useState(RANKINGS_24_HOURS);
+    const popperRef = useRef();
     useEffect(() => {
         if (activeTab.time === 1) {
             setRender(RANKINGS_24_HOURS);
@@ -33,11 +34,11 @@ export default function Rankings() {
     };
     return (
         <div className={cx('wrapper')}>
-            <PopperCollection heading="Top collections over" activeTab={activeTab.name}>
+            <PopperCollection heading="Top collections over" activeTab={activeTab.name} ref={popperRef}>
                 {TABS.map((tab, index) => (
-                    <p key={index} onClick={() => handleChangeTab(tab)}>
-                        {tab.name}
-                    </p>
+                    <div key={index} onClick={() => handleChangeTab(tab)} className={cx('tab-item')}>
+                        <p>{tab.name}</p>
+                    </div>
                 ))}
             </PopperCollection>
 
