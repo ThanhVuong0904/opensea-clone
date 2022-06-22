@@ -1,0 +1,128 @@
+.wrapper {
+    max-width: min(1280px, 100% - 40px);
+    width: 100%;
+    margin: 120px auto 0;
+}
+
+.heading {
+    font-weight: 600;
+    font-size: 2.4rem;
+    color: rgb(4, 17, 29);
+    text-align: center;
+
+    span {
+        color: rgb(32, 129, 226);
+        cursor: pointer;
+    }
+    .arrow-down {
+        font-size: 2rem !important;
+        color: rgb(32, 129, 226);
+    }
+}
+
+.list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 0 50px;
+    margin-top: 30px;
+}
+
+.ranking-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent transparent rgb(229, 232, 235);
+    cursor: pointer;
+
+    .space {
+        font-weight: 600;
+        font-size: 1.4rem;
+        color: rgb(138, 147, 155);
+    }
+    &:hover {
+        border-radius: 10px;
+        border: 1px solid rgb(229, 232, 235);
+        transition: all 0.2s ease 0s;
+        box-shadow: rgb(4 17 29 / 25%) 0px 0px 8px 0px;
+        background-color: rgb(251, 253, 255);
+    }
+}
+
+.rank {
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: rgb(4, 17, 29);
+}
+.avatar {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 15px;
+}
+
+.name {
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: rgb(4, 17, 29);
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.content {
+    // flex: 1;
+    max-width: 250px;
+    overflow: hidden;
+    width: 100%;
+}
+.etherum-icon {
+    width: 14px;
+    height: 14px;
+}
+.floor-price {
+    &-title {
+        font-weight: 500;
+        font-size: 1.2rem;
+        color: rgb(112, 122, 131);
+    }
+
+    &-price {
+        font-weight: 600;
+        font-size: 1.4rem;
+        color: rgb(138, 147, 155);
+    }
+}
+
+.slippage {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-left: auto;
+
+    &-percent {
+        font-weight: 400;
+        font-size: 1.4rem;
+        &.down {
+            color: rgb(235, 87, 87);
+        }
+
+        &.up {
+            color: rgb(52, 199, 123);
+        }
+    }
+}
+
+.d-flex {
+    display: flex;
+    align-items: center;
+    span {
+        font-weight: 600;
+        font-size: 1.4rem;
+        color: rgb(138, 147, 155);
+    }
+}

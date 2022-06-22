@@ -1,6 +1,8 @@
 .wrapper {
     margin: 40px auto;
     padding: 0 40px;
+    max-width: min(1280px, 100% - 40px);
+    width: 100%;
 }
 
 .container {

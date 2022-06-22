@@ -1,4 +1,4 @@
-import './GlobalStyle.module.scss';
+import './GlobalStyle.scss';
 import PropTypes from 'prop-types';
 
 export default function GlobalStyle({ children }) {

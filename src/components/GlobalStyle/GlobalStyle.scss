@@ -30,3 +30,10 @@ a {
     text-decoration: none;
     color: unset;
 }
+
+body {
+    .tippy-box {
+        font-weight: 600;
+        padding: 6px 10px;
+    }
+}
