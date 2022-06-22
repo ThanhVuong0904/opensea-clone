@@ -2,6 +2,8 @@ import { useRef, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 import classNames from 'classnames/bind';
 import styles from './Trending.module.scss';
 import { Popper as PopperTrending } from '~/components/Popper';
@@ -36,6 +38,7 @@ const TABS = [
     { icon: utility, name: 'Utility' },
     { icon: virtualWorlds, name: 'Virtual Worlds' },
 ];
+//
 export default function Trending() {
     const popperRef = useRef();
     const [activeTab, setActiveTab] = useState('All Catergories');
@@ -71,14 +74,43 @@ export default function Trending() {
                                     <div className={cx('name')}>
                                         <span>{item.name}</span>
                                         {item.tickName && (
-                                            <img className={cx('verify-icon')} src={images.verify} alt="Verify" />
+                                            <Tippy
+                                                interactive={true}
+                                                appendTo={document.body}
+                                                content={
+                                                    <span style={{ textAlign: 'center' }}>
+                                                        This collection belongs to a verified account and has
+                                                        significant interest or sales.&nbsp;
+                                                        <a className={cx('learn-more')} href="https://opensea.io/">
+                                                            Learn more
+                                                        </a>
+                                                    </span>
+                                                }
+                                                placement="right"
+                                            >
+                                                <img className={cx('verify-icon')} src={images.verify} alt="Verify" />
+                                            </Tippy>
                                         )}
                                     </div>
                                     <div className={cx('author')}>
                                         <span>by &nbsp;</span>
                                         <span>{item.author}</span>
                                         {item.tickAu && (
-                                            <img className={cx('verify-icon')} src={images.verify} alt="Verify" />
+                                            <Tippy
+                                                interactive={true}
+                                                appendTo={document.body}
+                                                content={
+                                                    <span style={{ textAlign: 'center' }}>
+                                                        This is a verified account.&nbsp;
+                                                        <a className={cx('learn-more')} href="https://opensea.io/">
+                                                            Learn more
+                                                        </a>
+                                                    </span>
+                                                }
+                                                placement="right"
+                                            >
+                                                <img className={cx('verify-icon')} src={images.verify} alt="Verify" />
+                                            </Tippy>
                                         )}
                                     </div>
 

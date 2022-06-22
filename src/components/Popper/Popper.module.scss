@@ -29,6 +29,7 @@
 
     .section {
         position: absolute;
+        display: none;
         min-width: 250px;
         max-height: 350px;
         overflow-y: auto;
@@ -37,10 +38,11 @@
         box-shadow: rgb(0 0 0 / 16%) 0px 4px 16px;
         background-color: rgb(255, 255, 255);
         border-radius: 10px;
-        opacity: 0;
+
         cursor: pointer;
+        z-index: 999;
         &.active {
-            opacity: 1;
+            display: block;
         }
     }
 }

@@ -26,6 +26,11 @@
     height: 1.8rem;
     margin-left: 5px;
 }
+
+.learn-more {
+    color: rgb(32, 129, 226);
+    text-decoration: none;
+}
 .trending-list {
     margin-top: 50px;
 }
@@ -110,6 +115,11 @@
         font-weight: 400;
         font-size: 16px;
         color: rgb(53, 56, 64);
+    }
+
+    &:hover {
+        box-shadow: rgb(4 17 29 / 25%) 0px 0px 8px 0px;
+        transition: all 0.1s ease 0s;
     }
 }
 

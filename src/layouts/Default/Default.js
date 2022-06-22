@@ -11,7 +11,7 @@ export default function Default({ children }) {
     return (
         <div className={cx('wrapper')}>
             <Header />
-            <div className="container">{children}</div>
+            <div className={cx('container')}>{children}</div>
         </div>
     );
 }
