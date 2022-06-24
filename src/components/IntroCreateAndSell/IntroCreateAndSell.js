@@ -47,9 +47,9 @@ export default function IntroCreateAndSell() {
                         <h3 className={cx('title')}>{item.title}</h3>
                         <p className={cx('description')}>
                             {reactStringReplace(item.description, item.link, (match, i) => (
-                                <a key={match + i} className={cx('highlight')}>
+                                <span key={match + i} className={cx('highlight')}>
                                     {match}
-                                </a>
+                                </span>
                             ))}
                         </p>
                     </div>

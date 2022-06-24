@@ -1,0 +1,35 @@
+.wrapper {
+    padding-top: 40px;
+    background-color: rgb(243, 251, 254);
+}
+.container {
+    background: url('../../assets/images/background.svg') center center / contain no-repeat;
+    padding: 40px 100px 80px;
+    height: 100vh;
+}
+.heading {
+    font-weight: 600;
+    font-size: 4rem;
+    color: rgb(4, 17, 29);
+    text-align: center;
+}
+.title {
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: rgb(53, 56, 64);
+    text-align: center;
+    margin-bottom: 20px;
+}
+.sub-title {
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: rgb(112, 122, 131);
+    text-align: center;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 80px;
+}

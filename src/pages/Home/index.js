@@ -5,6 +5,7 @@ import Trending from '~/components/Trending';
 import IntroCreateAndSell from '~/components/IntroCreateAndSell';
 import IntroResourcesAndStarted from '~/components/IntroResourcesAndStarted';
 import IntroBrowseCategory from '~/components/IntroBrowseCategory';
+import MeetOpenSea from '~/components/MeetOpenSea';
 
 export default function Home() {
     return (
@@ -19,6 +20,8 @@ export default function Home() {
             <IntroResourcesAndStarted />
             <div className="spacing"></div>
             <IntroBrowseCategory />
+            <div className="spacing"></div>
+            <MeetOpenSea />
         </div>
     );
 }
