@@ -4,6 +4,7 @@ import Rankings from '~/components/Rankings';
 import Trending from '~/components/Trending';
 import IntroCreateAndSell from '~/components/IntroCreateAndSell';
 import IntroResourcesAndStarted from '~/components/IntroResourcesAndStarted';
+import IntroBrowseCategory from '~/components/IntroBrowseCategory';
 
 export default function Home() {
     return (
@@ -16,6 +17,8 @@ export default function Home() {
             <IntroCreateAndSell />
             <div className="spacing"></div>
             <IntroResourcesAndStarted />
+            <div className="spacing"></div>
+            <IntroBrowseCategory />
         </div>
     );
 }
