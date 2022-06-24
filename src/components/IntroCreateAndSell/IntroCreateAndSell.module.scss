@@ -1,0 +1,43 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 0 20px;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    img {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        // margin-bottom: auto;
+    }
+}
+
+.title {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: rgb(4, 17, 29);
+}
+
+.description {
+    margin-bottom: auto;
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: rgb(53, 56, 64);
+}
+
+.highlight {
+    font-weight: 600;
+    color: rgb(32, 129, 226);
+    cursor: pointer;
+
+    &:hover {
+        color: rgb(24, 104, 183);
+    }
+}
