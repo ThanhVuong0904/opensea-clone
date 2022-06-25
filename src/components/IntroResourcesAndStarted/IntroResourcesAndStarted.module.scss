@@ -1,7 +1,11 @@
 .wrapper {
+    --totalWidth: 440px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 0 15px;
+    // max-width: min(1280px, 100% - 40px);
+    max-width: calc(3 * var(--totalWidth));
+    margin: 0 auto;
 }
 
 .item {
