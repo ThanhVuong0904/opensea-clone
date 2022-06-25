@@ -27,6 +27,15 @@ export default function Footer() {
             </div>
             <Community />
             <About />
+            <div className={cx('wrapper-background')}>
+                <div className={cx('container', 'copy-right')}>
+                    <p className={cx('copy-right-item')}>© 2018 - 2022 Ozone Networks, Inc</p>
+                    <div className={cx('d-flex')}>
+                        <p className={cx('copy-right-item')}>Privacy Policy</p>
+                        <p className={cx('copy-right-item')}>Terms of Service</p>
+                    </div>
+                </div>
+            </div>
         </footer>
     );
 }

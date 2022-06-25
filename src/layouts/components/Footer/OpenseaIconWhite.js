@@ -1,4 +1,4 @@
-export function OpenseaIconWhite() {
+export function OpenseaIconWhite({ className }) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -6,7 +6,7 @@ export function OpenseaIconWhite() {
             height="100"
             fill="none"
             viewBox="0 0 100 100"
-            class="mdl-js"
+            className={className}
         >
             <script xmlns="" />
             <path
