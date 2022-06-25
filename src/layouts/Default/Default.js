@@ -5,7 +5,7 @@ import styles from './Default.module.scss';
 
 import Header from '~/layouts/components/Header';
 import Footer from '~/layouts/components/Footer';
-
+import MeetOpenSea from '~/components/MeetOpenSea';
 const cx = classnames.bind(styles);
 
 export default function Default({ children }) {
@@ -13,6 +13,7 @@ export default function Default({ children }) {
         <div className={cx('wrapper')}>
             <Header />
             <div className={cx('container')}>{children}</div>
+            <MeetOpenSea />
             <Footer />
         </div>
     );
