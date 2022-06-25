@@ -1,0 +1,117 @@
+//Brand
+.wrapper-brands {
+    background-color: rgb(32, 129, 226);
+}
+
+.brands {
+    max-width: 1280px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 27px 25px;
+}
+
+.brand-icon {
+    width: 126px;
+    fill: rgba(251, 253, 255, 0.75);
+    cursor: pointer;
+    &:hover {
+        fill: rgb(251, 253, 255);
+    }
+}
+//Combinator fill text
+.fill-text {
+    fill: inherit;
+}
+
+.wrapper-background {
+    background-color: rgb(24, 104, 183);
+    color: rgb(255, 255, 255);
+    margin: 0 auto;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 82.5%;
+    margin: 0 auto;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(229, 232, 235, 0.25);
+}
+
+//Community
+//Left
+.left-community {
+    flex: 1;
+    padding: 40px 64px 40px 0;
+}
+
+.community-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+.left-desc {
+    font-size: 1.6rem;
+    color: rgb(251, 253, 255);
+}
+
+.wrapper-input {
+    display: flex;
+    margin-top: 16px;
+}
+
+.community-input {
+    // height: 50px;
+    width: 100%;
+    padding: 17px 20px;
+    margin-right: 20px;
+    outline: none;
+    border: none;
+    border-radius: 12px;
+}
+
+.left-btn {
+    height: 50px;
+    min-width: 126px;
+    border-radius: 12px;
+}
+
+// Right
+.right-community {
+    flex: 1;
+    padding: 40px 0 40px 64px;
+}
+
+.socials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 54px;
+    height: 54px;
+    margin-right: 12px;
+    margin-top: 8px;
+    border-radius: 12px;
+    background-color: rgb(32, 129, 226);
+    border: 2px solid rgb(32, 129, 226);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    .social-icon {
+        width: 3rem;
+        height: 2rem;
+    }
+}
+
+//About
+.about {
+    padding: 40px 0;
+}

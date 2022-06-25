@@ -2,6 +2,7 @@ import trendingImages from './trending';
 import createAndSell from './create-and-sell';
 import resoucesForGettingStarted from './resouces-for-getting-started';
 import browserCategory from './browse-category';
+import footer from './footer';
 const images = {
     logo: require('~/assets/images/logo.svg').default,
     start: require('~/assets/images/start.png'),
@@ -17,6 +18,7 @@ const images = {
     createAndSell,
     resoucesForGettingStarted,
     browserCategory,
+    footer,
 };
 
 export default images;
