@@ -7,6 +7,18 @@
     padding: 40px 100px 80px;
     max-width: 1280px;
     margin: 0 auto;
+    @media (min-width: 414px) {
+        padding: 0 40px;
+    }
+}
+.video {
+    width: 1080px;
+    height: 680px;
+    margin: 0 auto;
+    @media (min-width: 414px) {
+        width: 983px;
+        height: 553px;
+    }
 }
 .heading {
     font-weight: 600;

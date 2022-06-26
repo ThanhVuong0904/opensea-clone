@@ -4,12 +4,22 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyle from '~/components/GlobalStyle';
 
+import { Web3ReactProvider } from '@web3-react/core';
+import { Web3Provider } from '@ethersproject/providers';
+function getLibrary(provider) {
+    const library = new Web3Provider(provider);
+    library.pollingInterval = 8000;
+    return library;
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <GlobalStyle>
-            <App />
-        </GlobalStyle>
+        <Web3ReactProvider getLibrary={getLibrary}>
+            <GlobalStyle>
+                <App />
+            </GlobalStyle>
+        </Web3ReactProvider>
     </React.StrictMode>,
 );
 

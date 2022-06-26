@@ -65,7 +65,9 @@ export default function Header() {
                     </div>
 
                     <div className={cx('account')}>
-                        <AccountCircleOutlined className={cx('account-icon')} />
+                        <Link to={config.routes.login}>
+                            <AccountCircleOutlined className={cx('account-icon')} />
+                        </Link>
                         <AccountBalanceWalletOutlinedIcon className={cx('account-wallet')} />
                     </div>
                 </div>

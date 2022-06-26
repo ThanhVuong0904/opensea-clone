@@ -6,6 +6,10 @@
     // max-width: min(1280px, 100% - 40px);
     max-width: calc(3 * var(--totalWidth));
     margin: 0 auto;
+
+    @media (min-width: 414px) {
+        padding: 0 40px;
+    }
 }
 
 .item {

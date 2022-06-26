@@ -13,14 +13,14 @@ const trendingImages = {
         virtualWorlds: require('~/assets/images/trending/virtual-worlds-light.svg').default,
     },
     data: {
-        artOfMod: require('~/assets/images/trending/art-of-mod.png'),
-        artOfModAva: require('~/assets/images/trending/art-of-mod-ava.png'),
-        genie: require('~/assets/images/trending/genie.png'),
-        genieAva: require('~/assets/images/trending/genie-ava.png'),
-        doodles: require('~/assets/images/trending/doodles.png'),
-        doodlesAva: require('~/assets/images/trending/doodles-ava.png'),
-        singular: require('~/assets/images/trending/singular.png'),
-        singularAva: require('~/assets/images/trending/singular-ava.png'),
+        artOfMod: require('~/assets/images/trending/art-of-mod.png').default,
+        artOfModAva: require('~/assets/images/trending/art-of-mod-ava.png').default,
+        genie: require('~/assets/images/trending/genie.png').default,
+        genieAva: require('~/assets/images/trending/genie-ava.png').default,
+        doodles: require('~/assets/images/trending/doodles.png').default,
+        doodlesAva: require('~/assets/images/trending/doodles-ava.png').default,
+        singular: require('~/assets/images/trending/singular.png').default,
+        singularAva: require('~/assets/images/trending/singular-ava.png').default,
     },
 };
 

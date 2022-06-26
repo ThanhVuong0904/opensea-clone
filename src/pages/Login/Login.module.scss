@@ -1,0 +1,100 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto 72px;
+}
+
+.heading {
+    font-weight: 600;
+    font-size: 2.4rem;
+    color: rgb(4, 17, 29);
+}
+
+.title {
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: rgb(53, 56, 64);
+}
+
+.highlight {
+    font-weight: 600;
+    color: rgb(32, 129, 226);
+    cursor: pointer;
+
+    &:hover {
+        color: rgb(24, 104, 183);
+    }
+}
+
+.connects {
+    border: 1px solid rgb(229, 232, 235);
+    border-radius: 10px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.connect-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    cursor: pointer;
+
+    &:not(:last-child) {
+        border-bottom: 1px solid rgb(229, 232, 235);
+    }
+
+    &:hover {
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        transition: all 0.2s linear;
+    }
+}
+.name {
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: rgb(4, 17, 29);
+}
+.icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 16px;
+}
+
+.popular {
+    background-color: rgb(32, 129, 226);
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 4px 8px;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.solana {
+    background-color: rgb(229, 232, 235);
+    color: rgb(112, 122, 131);
+    border-radius: 10px;
+    padding: 4px 8px;
+    font-size: 1.2rem;
+}
+
+.mobile-only {
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: rgb(112, 122, 131);
+}
+
+.toggle-show {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    cursor: pointer;
+    span {
+        color: rgb(53, 56, 64);
+        font-size: 1.6rem;
+        font-weight: 600;
+    }
+    &:hover {
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        transition: all 0.2s linear;
+    }
+}

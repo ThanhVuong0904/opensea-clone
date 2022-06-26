@@ -2,6 +2,9 @@
     max-width: min(1280px, 100% - 40px);
     width: 100%;
     margin: 100px auto 100px;
+    @media (min-width: 414px) {
+        padding: 0 40px;
+    }
 }
 
 .tab-item {

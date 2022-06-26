@@ -4,6 +4,7 @@ const routes = {
     stats: '/stats',
     resources: '/resources',
     create: '/create',
+    login: '/login',
 };
 
 export default routes;

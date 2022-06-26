@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './Section.module.scss';
 
@@ -11,3 +12,9 @@ export default function Section({ title, children, background = false }) {
         </div>
     );
 }
+
+Section.propTypes = {
+    title: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired,
+    background: PropTypes.bool,
+};
