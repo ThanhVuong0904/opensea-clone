@@ -6,6 +6,8 @@ import GlobalStyle from '~/components/GlobalStyle';
 
 import { Web3ReactProvider } from '@web3-react/core';
 import { Web3Provider } from '@ethersproject/providers';
+import AuthenticateContextProvider from '~/contexts/AuthenticateContext';
+import { MoralisProvider } from 'react-moralis';
 function getLibrary(provider) {
     const library = new Web3Provider(provider);
     library.pollingInterval = 8000;
@@ -16,9 +18,16 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <Web3ReactProvider getLibrary={getLibrary}>
-            <GlobalStyle>
-                <App />
-            </GlobalStyle>
+            <MoralisProvider
+                appId="rouz3CYr8gVbF8suxldGyRNTzgzHy725KrJLy9Br"
+                serverUrl="https://7srarpqmdpds.usemoralis.com:2053/server"
+            >
+                <AuthenticateContextProvider>
+                    <GlobalStyle>
+                        <App />
+                    </GlobalStyle>
+                </AuthenticateContextProvider>
+            </MoralisProvider>
         </Web3ReactProvider>
     </React.StrictMode>,
 );

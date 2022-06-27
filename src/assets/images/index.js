@@ -9,6 +9,7 @@ const images = {
     start: require('~/assets/images/start.png').default,
     homeBanner: require('~/assets/images/home-banner.png').default,
     etherum: require('~/assets/images/etherum.svg').default,
+    bgUser: require('~/assets/images/background-user.jpg').default,
     verify: require('~/assets/images/verify.png').default,
     ranking1: require('~/assets/images/rankings/1.png').default,
     ranking2: require('~/assets/images/rankings/2.png').default,

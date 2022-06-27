@@ -5,6 +5,7 @@ const routes = {
     resources: '/resources',
     create: '/create',
     login: '/login',
+    account: '/account',
 };
 
 export default routes;

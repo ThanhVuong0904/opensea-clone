@@ -1,22 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import reactStringReplace from 'react-string-replace';
 import Tippy from '@tippyjs/react';
 import classNames from 'classnames/bind';
 import styles from './Login.module.scss';
 
-import { useWeb3React, UnsupportedChainIdError } from '@web3-react/core';
-
-import {
-    NoEthereumProviderError,
-    UserRejectedRequestError as UserRejectedRequestErrorInjected,
-} from '@web3-react/injected-connector';
-import {
-    URI_AVAILABLE,
-    UserRejectedRequestError as UserRejectedRequestErrorWalletConnect,
-} from '@web3-react/walletconnect-connector';
-
 import images from '~/assets/images';
-// import { useEagerConnect, useInactiveListener } from '~/hooks/index';
+import { AuthenticateContext } from '~/contexts/AuthenticateContext';
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 const {
@@ -55,16 +47,22 @@ const CONNECTS = [
 ];
 
 export default function Login() {
-    const context = useWeb3React();
-    const { connector, library, chainId, account, activate, deactivate, active, error } = context;
     const [renderListConnect, setRenderListConnect] = useState(CONNECTS.slice(0, 4));
     const [isShowMore, setIsShowMore] = useState(false);
+    const { connectMetamask, active } = useContext(AuthenticateContext);
+
     useEffect(() => {
         !isShowMore ? setRenderListConnect(CONNECTS.slice(0, 4)) : setRenderListConnect(CONNECTS);
     }, [isShowMore]);
 
     const handleToggleShow = () => {
         setIsShowMore(!isShowMore);
+    };
+
+    const handleLogin = async (wallet) => {
+        if (wallet === 'Metamask') {
+            await connectMetamask();
+        }
     };
     // function getErrorMessage(error) {
     //     if (error instanceof NoEthereumProviderError) {
@@ -82,43 +80,50 @@ export default function Login() {
     //         return 'An unknown error occurred. Check the console for more details.';
     //     }
     // }
+
     return (
-        <div className={cx('d-flex')}>
-            <div className={cx('wrapper')}>
-                <h1 className={cx('heading')}>Connect your wallet.</h1>
-                <p>
-                    {reactStringReplace(
-                        'Connect with one of our available wallet providers or create a new one.',
-                        'wallet',
-                        (match, i) => (
-                            <Tippy
-                                key={match + i}
-                                content="A crypto wallet is an application or hardware device that allows individuals to store and retrieve digital items."
-                                interactive
-                                placement="bottom"
-                            >
-                                <span className={cx('highlight')}>{match}</span>
-                            </Tippy>
-                        ),
-                    )}
-                </p>
-                <div className={cx('connects')}>
-                    {renderListConnect.map((item, index) => (
-                        <div key={index} className={cx('connect-item')}>
-                            <div className={cx('d-flex')}>
-                                <img className={cx('icon')} src={item.icon} alt={item.name} />
-                                <span className={cx('name')}>{item.name}</span>
+        <>
+            <Helmet>
+                <title>Login | OpenSea</title>
+            </Helmet>
+            {active && <Navigate to={config.routes.account} replace={true} />}
+            <div className={cx('d-flex')}>
+                <div className={cx('wrapper')}>
+                    <h1 className={cx('heading')}>Connect your wallet.</h1>
+                    <p>
+                        {reactStringReplace(
+                            'Connect with one of our available wallet providers or create a new one.',
+                            'wallet',
+                            (match, i) => (
+                                <Tippy
+                                    key={match + i}
+                                    content="A crypto wallet is an application or hardware device that allows individuals to store and retrieve digital items."
+                                    interactive
+                                    placement="bottom"
+                                >
+                                    <span className={cx('highlight')}>{match}</span>
+                                </Tippy>
+                            ),
+                        )}
+                    </p>
+                    <div className={cx('connects')}>
+                        {renderListConnect.map((item, index) => (
+                            <div key={index} className={cx('connect-item')} onClick={() => handleLogin(item.name)}>
+                                <div className={cx('d-flex')}>
+                                    <img className={cx('icon')} src={item.icon} alt={item.name} />
+                                    <span className={cx('name')}>{item.name}</span>
+                                </div>
+                                {item.poplular && <span className={cx('popular')}>Popular</span>}
+                                {item.solana && <span className={cx('solana')}>Solana</span>}
+                                {item.mobileOnly && <span className={cx('mobile-only')}>mobile only</span>}
                             </div>
-                            {item.poplular && <span className={cx('popular')}>Popular</span>}
-                            {item.solana && <span className={cx('solana')}>Solana</span>}
-                            {item.mobileOnly && <span className={cx('mobile-only')}>mobile only</span>}
+                        ))}
+                        <div className={cx('toggle-show')} onClick={handleToggleShow}>
+                            <span>{!isShowMore ? 'Show more options' : 'Show fewer options'}</span>
                         </div>
-                    ))}
-                    <div className={cx('toggle-show')} onClick={handleToggleShow}>
-                        <span>{!isShowMore ? 'Show more options' : 'Show fewer options'}</span>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
