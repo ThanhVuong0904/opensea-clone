@@ -1,14 +1,23 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { privateRoutes, publicRoutes } from '~/routes';
 import Default from '~/layouts/Default';
-import { Fragment, useContext } from 'react';
+import { Fragment, useContext, useLayoutEffect } from 'react';
 import { AuthenticateContext } from '~/contexts/AuthenticateContext';
 import Login from './pages/Login';
+
+const ScrollToTop = ({ children }) => {
+    const location = useLocation();
+    useLayoutEffect(() => {
+        document.documentElement.scrollTo(0, 0);
+    }, [location.pathname]);
+    return children;
+};
 function App() {
     const { active } = useContext(AuthenticateContext);
     return (
         <Router>
-            <div>
+            {/* <ScrollToTop /> */}
+            <ScrollToTop>
                 <Routes>
                     {publicRoutes.map((route, index) => {
                         const Page = route.component;
@@ -54,7 +63,7 @@ function App() {
                         );
                     })}
                 </Routes>
-            </div>
+            </ScrollToTop>
         </Router>
     );
 }

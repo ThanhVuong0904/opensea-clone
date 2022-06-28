@@ -22,7 +22,7 @@ const publicRoutes = [
 ];
 
 const privateRoutes = [
-    { path: config.routes.create, component: Create },
+    { path: config.routes.create, component: Create, layout: HeaderOnly },
     { path: config.routes.account, component: Account, layout: HeaderOnly },
 ];
 

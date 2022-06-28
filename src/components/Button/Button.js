@@ -20,11 +20,13 @@ export default function Button({
     leftIcon,
     rightIcon,
     onClick,
+    onSubmit,
     ...passProps
 }) {
     let Comp = 'button';
     const props = {
         onClick,
+        onSubmit,
         ...passProps,
     };
 
@@ -79,4 +81,5 @@ Button.propTypes = {
     leftIcon: PropTypes.node,
     rightIcon: PropTypes.node,
     onClick: PropTypes.func,
+    onSubmit: PropTypes.func,
 };
