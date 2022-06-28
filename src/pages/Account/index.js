@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet';
 import classNames from 'classnames/bind';
 import styles from './Account.module.scss';
 import images from '~/assets/images';
+import NFTItem from '~/components/NFT/NFTItem';
 import { useContext, useRef, useState } from 'react';
 import { AuthenticateContext } from '~/contexts/AuthenticateContext';
 import FilterListIcon from '@mui/icons-material/FilterList';
@@ -75,7 +76,14 @@ export default function Account() {
                     </div>
                 </div>
 
-                <div className={cx('list-nft', 'd-flex', 'align-center', 'justify-center')}>No item display</div>
+                {/* <div className={cx('list-nft', 'd-flex', 'align-center', 'justify-center')}></div> */}
+                <div className={cx('list-nft')}>
+                    <NFTItem />
+                    <NFTItem />
+                    <NFTItem />
+                    <NFTItem />
+                    <NFTItem />
+                </div>
             </div>
         </div>
     );
