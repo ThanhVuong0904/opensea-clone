@@ -1,42 +1,36 @@
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+
 import classNames from 'classnames/bind';
 import styles from './Detail.module.scss';
 import Button from '~/components/Button';
 import images from '~/assets/images';
 import Tippy from '@tippyjs/react';
+
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import SubjectIcon from '@mui/icons-material/Subject';
 import VerticalSplitIcon from '@mui/icons-material/VerticalSplit';
 import BallotIcon from '@mui/icons-material/Ballot';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import PanelItem from './Panel/PanelItem';
+import RefreshIcon from '@mui/icons-material/Refresh';
+import ShareIcon from '@mui/icons-material/Share';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import TimelineIcon from '@mui/icons-material/Timeline';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import TocIcon from '@mui/icons-material/Toc';
+
+import Panel from '~/components/Panel';
 
 const cx = classNames.bind(styles);
 
-const PANELS = [
-    { name: 'Description', icon: <SubjectIcon /> },
-    { name: 'About', icon: <VerticalSplitIcon /> },
-    {
-        name: 'Detail',
-        icon: <BallotIcon />,
-        content: [
-            { title: 'Contract Address', value: '0xde07acd8aa9909aedc995fb1f0a25db27650dc2f' },
-            { title: 'Token ID', value: '1' },
-            { title: 'Token Standard', value: 'ERC721' },
-            { title: 'Creator Fees', value: '0%' },
-        ],
-    },
+const DETAIL = [
+    { title: 'Contract Address', value: '0xde07acd8aa9909aedc995fb1f0a25db27650dc2f' },
+    { title: 'Token ID', value: '1' },
+    { title: 'Token Standard', value: 'ERC721' },
+    { title: 'Creator Fees', value: '0%' },
 ];
-const cAddress = '0xde07acd8aa9909aedc995fb1f0a25db27650dc2f';
 
 export default function Detail() {
     const { id } = useParams();
-    const [activeTab, setActiveTab] = useState('');
-
-    const handleActive = (name) => {
-        setActiveTab(name);
-    };
 
     return (
         <div className={cx('wrapper')}>
@@ -70,70 +64,100 @@ export default function Detail() {
                         </div>
                     </div>
                     <div className={cx('left-panel')}>
-                        {PANELS.map((item, index) => (
-                            <PanelItem key={index} data={item} />
-                        ))}
-                        {/* <div className={cx('panel-item')}>
-                            <div className={cx('panel-header')}>
-                                <div className={cx('panel-icon')}>
-                                    <SubjectIcon />
+                        <Panel icon={<SubjectIcon />} title="Description" toggle={false}>
+                            <span>By you</span>
+                            <p>Description</p>
+                        </Panel>
+                        <Panel icon={<VerticalSplitIcon />} title="About" toggle>
+                            <span>By you</span>
+                            <p>Description</p>
+                        </Panel>
+                        <Panel icon={<BallotIcon />} title="Detail" toggle>
+                            {DETAIL.map((item, index) => (
+                                <div key={index} className={cx('detail-item', 'd-flex', 'justify-between')}>
+                                    {item.title === 'Contract Address' ? (
+                                        <>
+                                            <p>{item.title}</p>
+                                            <p>
+                                                {item.value.substring(0, 6)}...
+                                                {item.value.substring(item.value.length - 4)}
+                                            </p>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <p>{item.title}</p>
+                                            <p>{item.value}</p>
+                                        </>
+                                    )}
                                 </div>
-                                <p className={cx('panel-name')}>Description</p>
-                            </div>
-                            <div className={cx('panel-content')} style={{ display: 'flex' }}>
-                                <span>By you</span>
-                                <p>Description</p>
-                            </div>
-                        </div>
-                        <div className={cx('panel-item')}>
-                            <div className={cx('panel-header', { active: activeTab })} onClick={handleActive}>
-                                <div className={cx('panel-icon')}>
-                                    <VerticalSplitIcon />
-                                </div>
-                                <p className={cx('panel-name')}>About</p>
-                                <KeyboardArrowDownIcon className={cx('arrow-down')} />
-                            </div>
-                            <div className={cx('panel-content')}>
-                                <span>By you</span>
-                                <p>Description</p>
-                            </div>
-                        </div>
-                        <div className={cx('panel-item')}>
-                            <div className={cx('panel-header', { active: activeTab })} onClick={handleActive}>
-                                <div className={cx('panel-icon')}>
-                                    <BallotIcon />
-                                </div>
-                                <p className={cx('panel-name')}>Detail</p>
-                                <KeyboardArrowDownIcon className={cx('arrow-down')} />
-                            </div>
-                            <div className={cx('panel-content')}>
-                                <div className={cx('detail-item', 'd-flex', 'justify-between')}>
-                                    <p>Contract Address</p>
-                                    <p>
-                                        {cAddress.substring(0, 6)}...{cAddress.substring(cAddress.length - 4)}
-                                    </p>
-                                </div>
-                                <div className={cx('detail-item', 'd-flex', 'justify-between')}>
-                                    <p>Token ID</p>
-                                    <p>1</p>
-                                </div>
-                                <div className={cx('detail-item', 'd-flex', 'justify-between')}>
-                                    <p>Token Standard</p>
-                                    <p>ERC-721</p>
-                                </div>
-                                <div className={cx('detail-item', 'd-flex', 'justify-between')}>
-                                    <p>Blockchain</p>
-                                    <p>Rinkeby</p>
-                                </div>
-                                <div className={cx('detail-item', 'd-flex', 'justify-between')}>
-                                    <p>Creator Fees</p>
-                                    <p>0%</p>
-                                </div>
-                            </div>
-                        </div> */}
+                            ))}
+                        </Panel>
                     </div>
                 </div>
-                <div className={cx('right')}></div>
+                <div className={cx('right')}>
+                    <div className={cx('right-header', 'd-flex', 'align-center', 'justify-between')}>
+                        <h3 className={cx('collection-name')}>ThanhVuong</h3>
+                        <div className={cx('toolbar')}>
+                            <Tippy content="Refresh metadata">
+                                <button className={cx('toolbar-item')}>
+                                    <RefreshIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy content="Refresh metadata">
+                                <button className={cx('toolbar-item')}>
+                                    <ShareIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy content="More">
+                                <button className={cx('toolbar-item')}>
+                                    <MoreVertIcon />
+                                </button>
+                            </Tippy>
+                        </div>
+                    </div>
+                    <p className={cx('nft-name')}>NFT-Name</p>
+                    <div className={cx('nft-count', 'd-flex', 'align-center')}>
+                        <p>
+                            Owned by <span>20B8D1</span>
+                        </p>
+                        <VisibilityIcon /> 3 views
+                    </div>
+                    <div className={cx('right-panel')}>
+                        <div className={cx('right-panel-item')}>
+                            <Panel icon={<TimelineIcon />} title="Price History" toggle>
+                                <div
+                                    className={cx('d-flex', 'align-center', 'justify-center')}
+                                    style={{ flexDirection: 'column' }}
+                                >
+                                    <img src="https://testnets.opensea.io/static/images/no-chart-data.svg" alt="" />
+                                    <p>No item activity yet</p>
+                                </div>
+                            </Panel>
+                        </div>
+                        <div className={cx('right-panel-item')}>
+                            <Panel icon={<LocalOfferIcon />} title="Listing" toggle>
+                                <div
+                                    className={cx('d-flex', 'align-center', 'justify-center')}
+                                    style={{ flexDirection: 'column' }}
+                                >
+                                    <img src="https://testnets.opensea.io/static/images/empty-asks.svg" alt="" />
+                                    <p>No listings yet</p>
+                                </div>
+                            </Panel>
+                        </div>
+                        <div className={cx('right-panel-item')}>
+                            <Panel icon={<TocIcon />} title="Offers" toggle>
+                                <div
+                                    className={cx('d-flex', 'align-center', 'justify-center')}
+                                    style={{ flexDirection: 'column' }}
+                                >
+                                    <img src="https://testnets.opensea.io/static/images/empty-asks.svg" alt="" />
+                                    <p>No offers yet</p>
+                                </div>
+                            </Panel>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

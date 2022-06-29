@@ -19,6 +19,7 @@
 }
 
 .container {
+    display: flex;
     max-width: 1280px;
     margin: 20px auto 0;
     padding: 8px 8px 16px;
@@ -27,6 +28,7 @@
 .left-wrapper {
     width: 43%;
     flex-grow: 3;
+    margin: 20px;
     .left-container {
         display: flex;
         flex-direction: column;
@@ -81,64 +83,106 @@
         border: 1px solid rgb(229, 232, 235);
         overflow: hidden;
     }
+    .detail-item {
+        margin-top: 8px;
 
-    .panel-item {
-        display: flex;
-        flex-direction: column;
-        user-select: none;
-        background-color: rgb(255, 255, 255);
-    }
-    .panel-header {
-        display: flex;
-        align-items: center;
-        padding: 20px;
-        border-bottom: 1px solid rgb(229, 232, 235);
-        cursor: pointer;
-        .panel-icon {
-            display: inline-flex;
-            svg {
-                font-size: 2.4rem;
-                margin-right: 10px;
-            }
+        & p:first-child {
+            color: rgb(4, 17, 29);
+            font-size: 1.5rem;
         }
-        .panel-name {
-            font-size: 1.6rem;
-            color: #04111d;
-            font-weight: 600;
-        }
-        .arrow-down {
-            margin-left: auto;
-            font-size: 2.4rem;
-            color: rgba(4, 17, 29, 0.5);
-        }
-    }
-    .panel-content {
-        display: none;
-        padding: 20px;
-        background-color: rgb(251, 253, 255);
-        &.active {
-            display: block;
-        }
-        .detail-item {
-            margin-top: 8px;
 
-            & p:first-child {
-                color: rgb(4, 17, 29);
-                font-size: 1.5rem;
-            }
-
-            & p:nth-child(2) {
-                font-weight: 500;
-                font-size: 1.4rem;
-                color: rgb(112, 122, 131);
-            }
+        & p:nth-child(2) {
+            font-weight: 500;
+            font-size: 1.4rem;
+            color: rgb(112, 122, 131);
         }
     }
 }
 
-.panel-item:not(:last-child) > .panel-content {
-    border-bottom: 1px solid rgb(229, 232, 235);
-}
 .right {
     width: 57%;
+    margin-left: -20px;
+    flex-grow: 4;
+    max-width: 100%;
+    &-header {
+        margin: 20px 20px 15px;
+    }
+    &-panel {
+        margin: 20px;
+
+        &-item {
+            margin: 10px 0 20px;
+            border-radius: 10px;
+            border: 1px solid rgb(229, 232, 235);
+            background-color: rgb(255, 255, 255);
+            overflow: hidden;
+        }
+    }
+}
+.collection-name {
+    color: rgb(32, 129, 226);
+    font-size: 1.6rem;
+    font-weight: 400;
+    &:hover {
+        color: rgb(24, 104, 183);
+    }
+}
+.nft-name {
+    font-size: 3rem;
+    font-weight: 600;
+    max-width: 100%;
+    margin: 10px 20px 15px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: normal;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+.toolbar-item {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    // border-radius: 12px;
+    justify-content: center;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: 0.01em;
+    padding: 11px;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(229, 232, 235);
+    color: rgb(4, 17, 29);
+    svg {
+        font-size: 1.6rem;
+    }
+    &:nth-child(1) {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+    &:last-child {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+    &:not(:first-child) {
+        margin-left: -2px;
+    }
+}
+
+.nft-count {
+    margin: 20px;
+    color: rgb(112, 122, 131);
+
+    font-size: 1.5rem;
+    p {
+        span {
+            cursor: pointer;
+            color: rgb(32, 129, 226);
+        }
+    }
+    svg {
+        font-size: 2.4rem;
+        margin-left: 15px;
+        margin-right: 10px;
+    }
 }
