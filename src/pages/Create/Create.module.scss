@@ -16,3 +16,66 @@
     font-size: 1.2rem;
     color: rgb(112, 122, 131);
 }
+
+//Upload filed
+.form-group {
+    display: flex;
+    flex-direction: column;
+    // margin-bottom: 30px;
+}
+
+.preview-image {
+    position: relative;
+    width: 350px;
+    height: 257px;
+    padding: 4px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 3px dashed rgb(204, 204, 204);
+    border-radius: 10px;
+
+    .photo-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        transform: translate(-50%, -50%);
+        color: rgb(204, 204, 204);
+        width: 8.4rem !important;
+        height: 8.4rem !important;
+        z-index: 1;
+    }
+}
+.label {
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: rgb(53, 56, 64);
+    margin-bottom: 4px;
+}
+
+.sub-label {
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: rgb(112, 122, 131);
+    margin-bottom: 8px;
+}
+
+.preview {
+    position: absolute;
+    width: 98%;
+    height: 98%;
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 3;
+}
+
+.form-feedback {
+    margin-top: 5px;
+    color: rgb(235, 87, 87);
+    font-size: 1.2rem;
+}

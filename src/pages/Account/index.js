@@ -1,10 +1,15 @@
+import { useContext, useEffect, useRef, useState } from 'react';
+import { useMoralisWeb3Api } from 'react-moralis';
+
 import { Helmet } from 'react-helmet';
+import { AuthenticateContext } from '~/contexts/AuthenticateContext';
+
 import classNames from 'classnames/bind';
 import styles from './Account.module.scss';
 import images from '~/assets/images';
+
 import NFTItem from '~/components/NFT/NFTItem';
-import { useContext, useRef, useState } from 'react';
-import { AuthenticateContext } from '~/contexts/AuthenticateContext';
+
 import FilterListIcon from '@mui/icons-material/FilterList';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -13,11 +18,27 @@ import GridOnIcon from '@mui/icons-material/GridOn';
 const cx = classNames.bind(styles);
 
 const TABS = ['Collected', 'Created', 'Favorited', 'Activity', 'More'];
+
 export default function Account() {
+    const Web3Api = useMoralisWeb3Api();
     const { account } = useContext(AuthenticateContext);
     const [activeTab, setActiveTab] = useState('Collected');
+    const [myNFTs, setMyNFTs] = useState([]);
 
     const searchRef = useRef();
+
+    useEffect(() => {
+        const fetchNFTsForContract = async () => {
+            const options = {
+                chain: 'rinkeby',
+                address: account,
+                token_address: '0x219FEcB361c0475D86BF9A2D28Ce828233ed914f',
+            };
+            const nfts = await Web3Api.account.getNFTsForContract(options);
+            setMyNFTs(nfts.result);
+        };
+        account && fetchNFTsForContract();
+    }, [account]);
     return (
         <div className={cx('wrapper')}>
             <Helmet>
@@ -75,14 +96,16 @@ export default function Account() {
                         </div>
                     </div>
                 </div>
-
-                {/* <div className={cx('list-nft', 'd-flex', 'align-center', 'justify-center')}></div> */}
                 <div className={cx('list-nft')}>
-                    <NFTItem />
-                    <NFTItem />
-                    <NFTItem />
-                    <NFTItem />
-                    <NFTItem />
+                    {myNFTs.map((nft, index) => (
+                        <NFTItem
+                            key={index}
+                            id={nft.token_id}
+                            address={nft.token_address}
+                            name={nft.name}
+                            metadata={JSON.parse(nft.metadata)}
+                        />
+                    ))}
                 </div>
             </div>
         </div>

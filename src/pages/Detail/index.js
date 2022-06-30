@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { useMoralisWeb3Api, useMoralis } from 'react-moralis';
 
 import classNames from 'classnames/bind';
 import styles from './Detail.module.scss';
@@ -19,24 +20,44 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import TocIcon from '@mui/icons-material/Toc';
 
 import Panel from '~/components/Panel';
+import { useContext, useEffect, useState } from 'react';
+// import { AuthenticateContext } from '~/contexts/AuthenticateContext';
 
 const cx = classNames.bind(styles);
 
-const DETAIL = [
-    { title: 'Contract Address', value: '0xde07acd8aa9909aedc995fb1f0a25db27650dc2f' },
-    { title: 'Token ID', value: '1' },
-    { title: 'Token Standard', value: 'ERC721' },
-    { title: 'Creator Fees', value: '0%' },
-];
-
 export default function Detail() {
-    const { id } = useParams();
-
+    const Web3Api = useMoralisWeb3Api();
+    const { isInitialized } = useMoralis();
+    const { address, id } = useParams();
+    const DETAIL = [
+        { title: 'Contract Address', value: address },
+        { title: 'Token ID', value: id },
+        { title: 'Token Standard', value: 'ERC721' },
+        { title: 'Creator Fees', value: '0%' },
+    ];
+    // const { library, account } = useContext(AuthenticateContext);
+    const [metadata, setMetadata] = useState({});
+    const [NFTDetail, setNFTDetail] = useState({});
+    useEffect(() => {
+        const fetchTokenIdMetadata = async () => {
+            const options = {
+                address: address,
+                token_id: id,
+                chain: 'rinkeby',
+            };
+            const tokenIdMetadata = await Web3Api.token.getTokenIdMetadata(options);
+            console.log(tokenIdMetadata);
+            const metadataParse = JSON.parse(tokenIdMetadata.metadata);
+            setMetadata(metadataParse);
+            setNFTDetail(tokenIdMetadata);
+        };
+        isInitialized && address && id && fetchTokenIdMetadata();
+    }, [address, id, isInitialized]);
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
                 <div className={cx('header-container')}>
-                    <Button primary small>
+                    <Button primary small to={`/sell/${address}/${id}`}>
                         Sell
                     </Button>
                 </div>
@@ -57,20 +78,25 @@ export default function Detail() {
                             </div>
                         </div>
                         <div className={cx('left-media')}>
-                            <img
-                                src="https://lh3.googleusercontent.com/L-ks9_fCpAmndnpemZhTSGBYptahDCuc6VmDy4l_N9XAhiCCgGh4PJB12WnfhbDEcvkWoih4yQDGwrnelodOrycy0IkfZK_sgsfC1w=w600"
-                                alt=""
-                            />
+                            <img src={metadata.image} alt={metadata.name} />
                         </div>
                     </div>
                     <div className={cx('left-panel')}>
                         <Panel icon={<SubjectIcon />} title="Description" toggle={false}>
-                            <span>By you</span>
-                            <p>Description</p>
+                            <span>
+                                By &nbsp;
+                                {NFTDetail.owner_of && (
+                                    <span className={cx('text')}>
+                                        {NFTDetail.owner_of.substring(0, 6)}
+                                        ...{NFTDetail.owner_of.substring(NFTDetail.owner_of.length - 4)}
+                                    </span>
+                                )}
+                            </span>
+                            <p>{metadata.description}</p>
                         </Panel>
                         <Panel icon={<VerticalSplitIcon />} title="About" toggle>
-                            <span>By you</span>
-                            <p>Description</p>
+                            <span>About</span>
+                            <p>About</p>
                         </Panel>
                         <Panel icon={<BallotIcon />} title="Detail" toggle>
                             {DETAIL.map((item, index) => (
@@ -96,7 +122,7 @@ export default function Detail() {
                 </div>
                 <div className={cx('right')}>
                     <div className={cx('right-header', 'd-flex', 'align-center', 'justify-between')}>
-                        <h3 className={cx('collection-name')}>ThanhVuong</h3>
+                        <h3 className={cx('collection-name')}>{NFTDetail.name}</h3>
                         <div className={cx('toolbar')}>
                             <Tippy content="Refresh metadata">
                                 <button className={cx('toolbar-item')}>
@@ -115,7 +141,7 @@ export default function Detail() {
                             </Tippy>
                         </div>
                     </div>
-                    <p className={cx('nft-name')}>NFT-Name</p>
+                    <p className={cx('nft-name')}>{metadata.name}</p>
                     <div className={cx('nft-count', 'd-flex', 'align-center')}>
                         <p>
                             Owned by <span>20B8D1</span>

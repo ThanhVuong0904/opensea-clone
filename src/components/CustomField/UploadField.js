@@ -7,14 +7,13 @@ import PhotoIcon from '@mui/icons-material/Photo';
 import { FormGroup, Label, Input } from 'reactstrap';
 
 const cx = classNames.bind(styles);
-export default function UploadField({ field, type, label, placehoder, disabled, subLabel, isRequire }) {
-    const { name } = field;
-    // const { name, value, onChange, onBlur } = field;
-    const [blob, setBlob] = useState();
-    const handleUpload = (e) => {
-        const file = e.target.files[0];
-        setBlob(URL.createObjectURL(file));
-    };
+export default function UploadField({ name, type, label, placehoder, disabled, subLabel, isRequire }) {
+    // const { name } = field;
+    // const [blob, setBlob] = useState();
+    // const handleUpload = (e) => {
+    //     const file = e.target.files[0];
+    //     setBlob(URL.createObjectURL(file));
+    // };
     return (
         <FormGroup className={cx('form-group')}>
             {label && (
@@ -30,13 +29,12 @@ export default function UploadField({ field, type, label, placehoder, disabled, 
                         id={name}
                         type={type}
                         className={cx('input', 'file')}
-                        {...field}
-                        onChange={handleUpload}
+                        // onChange={handleUpload}
                         placeholder={placehoder}
                         disabled={disabled}
                     />
                 </>
-                {blob && <img className={cx('preview')} src={blob} alt="Preview" />}
+                {/* {blob && <img className={cx('preview')} src={blob} alt="Preview" />} */}
             </div>
         </FormGroup>
     );

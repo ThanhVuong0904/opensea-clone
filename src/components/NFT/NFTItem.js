@@ -19,7 +19,7 @@ const MENUS = [
     { name: 'Make profile picture', icon: <ImageIcon /> },
     { name: 'Hide', icon: <VisibilityOffIcon /> },
 ];
-export default function NFTItem({ data }) {
+export default function NFTItem({ name, id, address, metadata }) {
     const render = () => {
         return MENUS.map((menu, index) => (
             <div key={index} className={cx('menu-item')}>
@@ -29,13 +29,13 @@ export default function NFTItem({ data }) {
         ));
     };
     return (
-        <Link to={`/1`} className={cx('wrapper')}>
+        <Link to={`/${address}/${id}`} className={cx('wrapper')}>
             <div className={cx('nft-image')}>
-                <img src={images.etherum} alt="" />
+                <img src={metadata.image} alt={metadata.name} />
             </div>
             <div className={cx('content')}>
-                <p className={cx('name')}>Ethereum</p>
-                <p className={cx('collection')}>AirClass</p>
+                <p className={cx('name')}>{metadata.name}</p>
+                <p className={cx('collection')}>{name}</p>
                 <Tippy
                     content="More options"
                     placement="top-start"

@@ -6,7 +6,8 @@ const routes = {
     create: '/create',
     login: '/login',
     account: '/account',
-    detail: '/:id',
+    detail: '/:address/:id',
+    sell: '/sell/:address/:id',
 };
 
 export default routes;

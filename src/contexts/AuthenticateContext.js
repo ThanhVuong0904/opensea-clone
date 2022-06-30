@@ -1,10 +1,10 @@
 import { useWeb3React } from '@web3-react/core';
-import { createContext } from 'react';
-import { METAMASK } from '~/constants/authConstant';
+import { createContext, useEffect } from 'react';
+// import { METAMASK } from '~/constants/authConstant';
 
 import { connectors } from '~/utils/connector';
 import { useMoralis } from 'react-moralis';
-import config from '~/config';
+// import config from '~/config';
 
 export const AuthenticateContext = createContext();
 
@@ -16,7 +16,6 @@ function AuthenticateContextProvider({ children }) {
     const connectMetamask = async () => {
         try {
             await activate(connectors.injected);
-            console.log('ok');
             if (!isAuthenticated) {
                 await authenticate({ signingMessage: 'Log in using Moralis' })
                     .then(function (user) {
@@ -36,6 +35,7 @@ function AuthenticateContextProvider({ children }) {
         connectMetamask,
         account,
         active,
+        library,
     };
     return <AuthenticateContext.Provider value={state}>{children}</AuthenticateContext.Provider>;
 }

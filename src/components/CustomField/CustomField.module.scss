@@ -43,51 +43,51 @@
     color: rgb(235, 87, 87);
     font-size: 1.2rem;
 }
-.wrapper-file {
-    position: relative;
-    width: 350px;
-    height: 257px;
-    padding: 4px;
-    overflow: hidden;
-    cursor: pointer;
-    border: 3px dashed rgb(204, 204, 204);
-    border-radius: 10px;
+// .wrapper-file {
+//     position: relative;
+//     width: 350px;
+//     height: 257px;
+//     padding: 4px;
+//     overflow: hidden;
+//     cursor: pointer;
+//     border: 3px dashed rgb(204, 204, 204);
+//     border-radius: 10px;
 
-    & input {
-        display: none;
-        width: 100%;
-        height: 100%;
-        outline: none;
-        border: none;
-        &::-webkit-file-upload-button {
-            visibility: hidden;
-        }
-    }
+//     & input {
+//         display: none;
+//         width: 100%;
+//         height: 100%;
+//         outline: none;
+//         border: none;
+//         &::-webkit-file-upload-button {
+//             visibility: hidden;
+//         }
+//     }
 
-    .photo-icon {
-        position: absolute;
-        top: 50%;
-        left: 50%;
+//     .photo-icon {
+//         position: absolute;
+//         top: 50%;
+//         left: 50%;
 
-        transform: translate(-50%, -50%);
-        color: rgb(204, 204, 204);
-        width: 8.4rem !important;
-        height: 8.4rem !important;
-        z-index: 1;
-    }
-}
-.preview {
-    position: absolute;
-    width: 98%;
-    height: 98%;
-    top: 50%;
-    left: 50%;
-    border-radius: 10px;
+//         transform: translate(-50%, -50%);
+//         color: rgb(204, 204, 204);
+//         width: 8.4rem !important;
+//         height: 8.4rem !important;
+//         z-index: 1;
+//     }
+// }
+// .preview {
+//     position: absolute;
+//     width: 98%;
+//     height: 98%;
+//     top: 50%;
+//     left: 50%;
+//     border-radius: 10px;
 
-    transform: translate(-50%, -50%);
-    object-fit: cover;
-    z-index: 3;
-}
+//     transform: translate(-50%, -50%);
+//     object-fit: cover;
+//     z-index: 3;
+// }
 .tag {
     color: red;
 }
