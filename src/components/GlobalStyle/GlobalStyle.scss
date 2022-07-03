@@ -2,7 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --text-primary: rgba(4, 17, 29, 0.75);
+    --text-primary: rgb(4, 17, 29);
+    --text-second: rgb(112, 122, 131);
     --primary: rgb(32, 129, 226);
     --white: white;
 
@@ -79,4 +80,28 @@ body {
 
 .justify-between {
     justify-content: space-between;
+}
+
+.direction-col {
+    flex-direction: column;
+}
+
+.txt-pri-fw600 {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+.txt-second-fw500 {
+    color: var(--text-second);
+    font-weight: 500;
+}
+.fz-12 {
+    font-size: 1.2rem;
+}
+
+.fz-14 {
+    font-size: 1.4rem;
+}
+
+.fz-16 {
+    font-size: 1.6rem;
 }

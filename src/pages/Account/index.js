@@ -15,30 +15,61 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import WindowIcon from '@mui/icons-material/Window';
 import GridOnIcon from '@mui/icons-material/GridOn';
+import { ethers } from 'ethers';
+import { MarketAbi } from '~/abi';
+import { MARKET_ADDRESS, NFT_ADDRESS } from '~/constants/address';
 const cx = classNames.bind(styles);
 
 const TABS = ['Collected', 'Created', 'Favorited', 'Activity', 'More'];
 
 export default function Account() {
     const Web3Api = useMoralisWeb3Api();
-    const { account } = useContext(AuthenticateContext);
+    const { account, library } = useContext(AuthenticateContext);
     const [activeTab, setActiveTab] = useState('Collected');
     const [myNFTs, setMyNFTs] = useState([]);
 
     const searchRef = useRef();
-
+    const getItemSell = async () => {
+        const signer = library.getSigner();
+        const contractMarket = new ethers.Contract(MARKET_ADDRESS, MarketAbi, signer);
+        const result = await contractMarket.getItems();
+        return result;
+    };
     useEffect(() => {
         const fetchNFTsForContract = async () => {
             const options = {
                 chain: 'rinkeby',
                 address: account,
-                token_address: '0x219FEcB361c0475D86BF9A2D28Ce828233ed914f',
+                token_address: NFT_ADDRESS,
             };
             const nfts = await Web3Api.account.getNFTsForContract(options);
-            setMyNFTs(nfts.result);
+            const itemSells = await getItemSell();
+            // console.log({ nfts });
+            nfts.result.map((nft) => {
+                setMyNFTs([]);
+                let nftInMarket = itemSells.find(
+                    (listing) => listing.tokenId.toString() === nft.token_id.toString() && listing,
+                );
+                setMyNFTs((prev) => [
+                    ...prev,
+                    {
+                        token_id: nft.token_id,
+                        token_address: nft.token_address,
+                        metadata: nft.metadata,
+                        name: nft.name,
+                        isSold: nftInMarket !== undefined && nftInMarket.isSold,
+                        price: nftInMarket !== undefined && nftInMarket.askingPrice.toString(),
+                    },
+                ]);
+            });
+            // setMyNFTs(nfts.result);
         };
         account && fetchNFTsForContract();
     }, [account]);
+
+    useEffect(() => {
+        console.log(myNFTs);
+    }, [myNFTs]);
     return (
         <div className={cx('wrapper')}>
             <Helmet>

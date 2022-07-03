@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from 'react';
+import { useContext, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import { Formik, Form, FastField, ErrorMessage } from 'formik';
 import * as yup from 'yup';
@@ -19,7 +19,7 @@ const SUPPORT_FORMAT = ['image/jpg', 'image/jpge', 'image/png'];
 const cx = classNames.bind(styles);
 
 export default function Create() {
-    const { account, active, library } = useContext(AuthenticateContext);
+    const { account, library } = useContext(AuthenticateContext);
     const { saveFile } = useMoralisFile();
     const uploadFileRef = useRef();
 
@@ -94,15 +94,6 @@ export default function Create() {
                                     <span style={{ color: 'red' }}>*</span> Required fields
                                 </span>
                                 <div style={{ marginTop: 10 }}>
-                                    {/* <FastField
-                                        name="asset"
-                                        component={UploadField}
-                                        onChange={(e) => setFieldValue('asset', e.currentTarget.files[0])}
-                                        type="file"
-                                        label="Image, Video, Audio, or 3D Model"
-                                        subLabel="File types supported: JPG, PNG, GIF, SVG, MP4, WEBM, MP3, WAV, OGG, GLB, GLTF. Max size: 100 MB"
-                                        isRequire
-                                    /> */}
                                     <FormGroup className={cx('form-group')}>
                                         <Label for="asset" className={cx('label')}>
                                             Image, Video, Audio, or 3D Model<span className={cx('tag')}>*</span>

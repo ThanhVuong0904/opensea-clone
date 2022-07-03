@@ -1,5 +1,5 @@
 import { useWeb3React } from '@web3-react/core';
-import { createContext, useEffect } from 'react';
+import { createContext } from 'react';
 // import { METAMASK } from '~/constants/authConstant';
 
 import { connectors } from '~/utils/connector';
@@ -10,12 +10,13 @@ export const AuthenticateContext = createContext();
 
 function AuthenticateContextProvider({ children }) {
     const context = useWeb3React();
-    const { connector, library, chainId, account, activate, deactivate, active, error } = context;
-    const { authenticate, isAuthenticated, isAuthenticating, user, logout } = useMoralis();
+    const { library, account, activate, deactivate, active, error } = context;
+    const { authenticate, isAuthenticated, logout } = useMoralis();
 
     const connectMetamask = async () => {
         try {
             await activate(connectors.injected);
+            console.log('call');
             if (!isAuthenticated) {
                 await authenticate({ signingMessage: 'Log in using Moralis' })
                     .then(function (user) {

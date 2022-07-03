@@ -13,15 +13,13 @@ function getLibrary(provider) {
     // library.pollingInterval = 8000;
     return library;
 }
+console.log(process.env.REACT_APP_APP_ID);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <Web3ReactProvider getLibrary={getLibrary}>
-            <MoralisProvider
-                appId="rouz3CYr8gVbF8suxldGyRNTzgzHy725KrJLy9Br"
-                serverUrl="https://7srarpqmdpds.usemoralis.com:2053/server"
-            >
+            <MoralisProvider appId={process.env.REACT_APP_APP_ID} serverUrl={process.env.REACT_APP_SERVER_URL}>
                 <AuthenticateContextProvider>
                     <GlobalStyle>
                         <App />
