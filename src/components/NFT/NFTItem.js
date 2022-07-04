@@ -19,7 +19,7 @@ const MENUS = [
     { name: 'Make profile picture', icon: <ImageIcon /> },
     { name: 'Hide', icon: <VisibilityOffIcon /> },
 ];
-export default function NFTItem({ name, id, address, metadata }) {
+export default function NFTItem({ name, id, address, price, isSold, metadata }) {
     const render = () => {
         return MENUS.map((menu, index) => (
             <div key={index} className={cx('menu-item')}>
@@ -34,8 +34,22 @@ export default function NFTItem({ name, id, address, metadata }) {
                 <img src={metadata.image} alt={metadata.name} />
             </div>
             <div className={cx('content')}>
-                <p className={cx('name')}>{metadata.name}</p>
-                <p className={cx('collection')}>{name}</p>
+                <div>
+                    <p className={cx('name')}>{metadata.name}</p>
+                    <p className={cx('collection')}>{name}</p>
+                </div>
+
+                {isSold && (
+                    <div className={cx('price')}>
+                        <p className={cx('name')}>Price</p>
+                        <div className={cx('d-flex', 'align-center')}>
+                            <Tippy content="ETH">
+                                <img style={{ width: 16, height: 16 }} src={images.etherum} alt="Etherum" />
+                            </Tippy>
+                            <p className={cx('txt-pri-fw600 fz-16')}>{(price / 1e18).toFixed(4)}</p>
+                        </div>
+                    </div>
+                )}
                 <Tippy
                     content="More options"
                     placement="top-start"

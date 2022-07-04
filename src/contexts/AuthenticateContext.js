@@ -1,22 +1,32 @@
 import { useWeb3React } from '@web3-react/core';
 import { createContext } from 'react';
-// import { METAMASK } from '~/constants/authConstant';
 
 import { connectors } from '~/utils/connector';
 import { useMoralis } from 'react-moralis';
-// import config from '~/config';
+import { MARKET_ADDRESS } from '~/constants/address';
+import { MarketAbi } from '~/abi';
+import { ethers } from 'ethers';
+import Web3 from 'web3';
 
 export const AuthenticateContext = createContext();
 
 function AuthenticateContextProvider({ children }) {
     const context = useWeb3React();
-    const { library, account, activate, deactivate, active, error } = context;
+    const { library, account, activate, deactivate, active } = context;
     const { authenticate, isAuthenticated, logout } = useMoralis();
 
+    const getItemSell = async () => {
+        const web3 = new Web3(window.ethereum);
+        // const signer = library.getSigner();
+        const contractMarket = new web3.eth.Contract(MarketAbi, MARKET_ADDRESS);
+        console.log(contractMarket);
+        const result = await contractMarket.methods.getItems().call();
+        return result;
+    };
     const connectMetamask = async () => {
         try {
-            await activate(connectors.injected);
-            console.log('call');
+            const alo = await activate(connectors.injected);
+            console.log('call', alo);
             if (!isAuthenticated) {
                 await authenticate({ signingMessage: 'Log in using Moralis' })
                     .then(function (user) {
@@ -34,6 +44,7 @@ function AuthenticateContextProvider({ children }) {
 
     const state = {
         connectMetamask,
+        getItemSell,
         account,
         active,
         library,

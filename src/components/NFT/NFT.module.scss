@@ -20,6 +20,7 @@
 .content {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     height: 150px;
     padding: 12px 16px;
 }
@@ -38,7 +39,7 @@
 .dots-icon {
     width: 2.4rem !important;
     height: 2.4rem !important;
-    margin-top: auto;
+    // margin-top: auto;
     color: rgb(112, 122, 131);
 }
 

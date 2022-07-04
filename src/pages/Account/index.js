@@ -15,26 +15,19 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import WindowIcon from '@mui/icons-material/Window';
 import GridOnIcon from '@mui/icons-material/GridOn';
-import { ethers } from 'ethers';
-import { MarketAbi } from '~/abi';
-import { MARKET_ADDRESS, NFT_ADDRESS } from '~/constants/address';
+import { NFT_ADDRESS } from '~/constants/address';
 const cx = classNames.bind(styles);
 
 const TABS = ['Collected', 'Created', 'Favorited', 'Activity', 'More'];
 
 export default function Account() {
     const Web3Api = useMoralisWeb3Api();
-    const { account, library } = useContext(AuthenticateContext);
+    const { account, getItemSell } = useContext(AuthenticateContext);
     const [activeTab, setActiveTab] = useState('Collected');
     const [myNFTs, setMyNFTs] = useState([]);
 
     const searchRef = useRef();
-    const getItemSell = async () => {
-        const signer = library.getSigner();
-        const contractMarket = new ethers.Contract(MARKET_ADDRESS, MarketAbi, signer);
-        const result = await contractMarket.getItems();
-        return result;
-    };
+
     useEffect(() => {
         const fetchNFTsForContract = async () => {
             const options = {
@@ -43,8 +36,8 @@ export default function Account() {
                 token_address: NFT_ADDRESS,
             };
             const nfts = await Web3Api.account.getNFTsForContract(options);
+            //Get NFT on sell in marketplace
             const itemSells = await getItemSell();
-            // console.log({ nfts });
             nfts.result.map((nft) => {
                 setMyNFTs([]);
                 let nftInMarket = itemSells.find(
@@ -62,14 +55,10 @@ export default function Account() {
                     },
                 ]);
             });
-            // setMyNFTs(nfts.result);
         };
         account && fetchNFTsForContract();
     }, [account]);
 
-    useEffect(() => {
-        console.log(myNFTs);
-    }, [myNFTs]);
     return (
         <div className={cx('wrapper')}>
             <Helmet>
@@ -134,6 +123,8 @@ export default function Account() {
                             id={nft.token_id}
                             address={nft.token_address}
                             name={nft.name}
+                            price={nft.price}
+                            isSold={nft.isSold}
                             metadata={JSON.parse(nft.metadata)}
                         />
                     ))}

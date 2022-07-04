@@ -73,7 +73,9 @@ body {
 .align-center {
     align-items: center;
 }
-
+.align-start {
+    align-items: start;
+}
 .justify-center {
     justify-content: center;
 }
@@ -104,4 +106,8 @@ body {
 
 .fz-16 {
     font-size: 1.6rem;
+}
+
+.fz-30 {
+    font-size: 3rem;
 }

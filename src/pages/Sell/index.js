@@ -18,11 +18,12 @@ export default function Sell() {
     const Web3Api = useMoralisWeb3Api();
     const { isInitialized } = useMoralis();
     const { address, id } = useParams();
-    const { library, active, connectMetamask, account } = useContext(AuthenticateContext);
+    const { library, active, connectMetamask, account, getItemSell } = useContext(AuthenticateContext);
 
     const [metadata, setMetadata] = useState({});
     const [nameCollection, setNameCollection] = useState('');
     const [price, setPrice] = useState('');
+    const [isSold, setIsSold] = useState();
     useEffect(() => {
         const fetchTokenIdMetadata = async () => {
             const options = {
@@ -34,23 +35,15 @@ export default function Sell() {
             const metadataParse = JSON.parse(tokenIdMetadata.metadata);
             setMetadata(metadataParse);
             setNameCollection(tokenIdMetadata.name);
+            const allItemSell = await getItemSell();
+            const findItemSellMatchID = allItemSell.find((nft) => nft.tokenId.toString() === id.toString());
+            console.log(findItemSellMatchID);
+            setIsSold(findItemSellMatchID !== undefined && findItemSellMatchID[4]);
         };
         isInitialized && address && id && fetchTokenIdMetadata();
     }, [address, id, isInitialized]);
 
-    const checkApproved = async () => {
-        const signer = library.getSigner();
-        //MarketContract
-        const contractAddress = '0xf3336b2D76C4d9c318e55210b736831502CA0989';
-        const contract = new ethers.Contract(address, NFTAbi, signer);
-        try {
-            if (contract.isApprovedForAll(account, contractAddress)) await contract.setApprovedForAll();
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    const handleBuy = async () => {
+    const handleSell = async () => {
         const signer = library.getSigner();
         const contractAddressMarket = '0xf3336b2D76C4d9c318e55210b736831502CA0989';
         const contractMarket = new ethers.Contract(contractAddressMarket, MarketAbi, signer);
@@ -115,8 +108,13 @@ export default function Sell() {
                     </div>
 
                     {active && (
-                        <Button primary onClick={handleBuy}>
+                        <Button primary onClick={handleSell} disabled={isSold}>
                             Complete listing
+                        </Button>
+                    )}
+                    {isSold && (
+                        <Button primary onClick={handleSell}>
+                            Update price
                         </Button>
                     )}
                     {!active && (
