@@ -67,6 +67,7 @@ export default function Detail() {
             });
         };
         isInitialized && address && id && fetchTokenIdMetadata();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [address, id, isInitialized]);
 
     const handleLogin = async () => {

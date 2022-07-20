@@ -24,7 +24,6 @@ const {
     dapper,
     authereum,
     torus,
-    portis,
     operaTouch,
     trust,
 } = images.login;

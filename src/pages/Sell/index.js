@@ -41,6 +41,7 @@ export default function Sell() {
             setIsSold(findItemSellMatchID !== undefined && findItemSellMatchID[4]);
         };
         isInitialized && address && id && fetchTokenIdMetadata();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [address, id, isInitialized]);
 
     const handleSell = async () => {
