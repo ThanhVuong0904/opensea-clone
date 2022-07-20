@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './CustomField.module.scss';
@@ -8,12 +7,6 @@ import { FormGroup, Label, Input } from 'reactstrap';
 
 const cx = classNames.bind(styles);
 export default function UploadField({ name, type, label, placehoder, disabled, subLabel, isRequire }) {
-    // const { name } = field;
-    // const [blob, setBlob] = useState();
-    // const handleUpload = (e) => {
-    //     const file = e.target.files[0];
-    //     setBlob(URL.createObjectURL(file));
-    // };
     return (
         <FormGroup className={cx('form-group')}>
             {label && (
@@ -29,12 +22,10 @@ export default function UploadField({ name, type, label, placehoder, disabled, s
                         id={name}
                         type={type}
                         className={cx('input', 'file')}
-                        // onChange={handleUpload}
                         placeholder={placehoder}
                         disabled={disabled}
                     />
                 </>
-                {/* {blob && <img className={cx('preview')} src={blob} alt="Preview" />} */}
             </div>
         </FormGroup>
     );

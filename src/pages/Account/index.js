@@ -38,6 +38,7 @@ export default function Account() {
             const nfts = await Web3Api.account.getNFTsForContract(options);
             //Get NFT on sell in marketplace
             const itemSells = await getItemSell();
+            // eslint-disable-next-line array-callback-return
             nfts.result.map((nft) => {
                 setMyNFTs([]);
                 let nftInMarket = itemSells.find(
@@ -57,6 +58,7 @@ export default function Account() {
             });
         };
         account && fetchNFTsForContract();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [account]);
 
     return (

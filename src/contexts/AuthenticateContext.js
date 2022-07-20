@@ -5,15 +5,15 @@ import { connectors } from '~/utils/connector';
 import { useMoralis } from 'react-moralis';
 import { MARKET_ADDRESS } from '~/constants/address';
 import { MarketAbi } from '~/abi';
-import { ethers } from 'ethers';
+
 import Web3 from 'web3';
 
 export const AuthenticateContext = createContext();
 
 function AuthenticateContextProvider({ children }) {
     const context = useWeb3React();
-    const { library, account, activate, deactivate, active } = context;
-    const { authenticate, isAuthenticated, logout } = useMoralis();
+    const { library, account, activate, active } = context;
+    const { authenticate, isAuthenticated } = useMoralis();
 
     const getItemSell = async () => {
         const web3 = new Web3(window.ethereum);
