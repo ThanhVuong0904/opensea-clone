@@ -17,16 +17,13 @@ function AuthenticateContextProvider({ children }) {
 
     const getItemSell = async () => {
         const web3 = new Web3(window.ethereum);
-        // const signer = library.getSigner();
         const contractMarket = new web3.eth.Contract(MarketAbi, MARKET_ADDRESS);
-        console.log(contractMarket);
         const result = await contractMarket.methods.getItems().call();
         return result;
     };
     const connectMetamask = async () => {
         try {
-            const alo = await activate(connectors.injected);
-            console.log('call', alo);
+            await activate(connectors.injected);
             if (!isAuthenticated) {
                 await authenticate({ signingMessage: 'Log in using Moralis' })
                     .then(function (user) {

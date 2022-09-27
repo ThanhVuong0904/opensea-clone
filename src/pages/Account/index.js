@@ -36,15 +36,15 @@ export default function Account() {
                 token_address: NFT_ADDRESS,
             };
             const nfts = await Web3Api.account.getNFTsForContract(options);
+            console.log('mynfts', nfts);
             //Get NFT on sell in marketplace
             const itemSells = await getItemSell();
-            // eslint-disable-next-line array-callback-return
             nfts.result.map((nft) => {
                 setMyNFTs([]);
                 let nftInMarket = itemSells.find(
                     (listing) => listing.tokenId.toString() === nft.token_id.toString() && listing,
                 );
-                setMyNFTs((prev) => [
+                return setMyNFTs((prev) => [
                     ...prev,
                     {
                         token_id: nft.token_id,
